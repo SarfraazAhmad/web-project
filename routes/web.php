@@ -2,27 +2,27 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
-})->name('home');                        //Named Route
+})->name('welcome');                        //Named Route
 
 Route::get('/post',function(){
-    return view('post');
+    return view('posts/post');
 })->name('post');
 
 // Route::view('/post','post');
                                            //Group Routes
 Route::prefix('/post')->group(function(){ 
     Route::get('/firstPost',function(){
-        return view('firstPost');
+        return view('posts/firstPost');
     })->name('firstPost');
     
     Route::get('/secondPost',function(){
-        return view('secondPost');
+        return view('posts/secondPost');
     })->name('2ndPost');
     
     Route::get('/thirdPost',function(){
-        return view('thirdPost');
+        return view('posts/thirdPost');
     })->name('3rdPost');
 });
 
@@ -35,7 +35,7 @@ Route::get('/post/{id?}/comment/{comment?}',function(string $id=null,string $com
 })->whereNumber('id')->whereAlphaNumeric('comment');
 
 Route::get('/test',function(){
-    return view('about');
+    return view('pages/about');
 })->name('about');
 
 Route::redirect('/about','/test'); //Route Redirection
@@ -43,3 +43,16 @@ Route::redirect('/about','/test'); //Route Redirection
 Route::fallback(function(){
     return "<h1>View not Found</h1>";
 });
+
+
+// Blade Template Directives
+//@include
+Route::get('/', function () {
+    return view('pages/home');
+})->name('home'); 
+
+//@extend
+
+Route::get('/masterlayout',function(){
+    return view('layouts.masterlayout');
+})->name('masterlayout');
