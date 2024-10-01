@@ -56,3 +56,9 @@ Route::get('/', function () {
 Route::get('/masterlayout',function(){
     return view('layouts.masterlayout');
 })->name('masterlayout');
+
+// @stack,Prepand,verbatim
+
+Route::get('/testing',function(){
+    return view('pages.testing');
+});

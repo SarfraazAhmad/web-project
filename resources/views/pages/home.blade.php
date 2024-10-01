@@ -12,13 +12,14 @@
 
 @include('pages/header')
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <title>@yield('title','home')</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
+@stack('style')
 </head>
 <body>
 <section>
@@ -43,6 +44,8 @@
         @endif
   </article>
 </section>
+@stack('script')
+
 </body>
 </html>
 

@@ -8,9 +8,27 @@
 
 @section('title')
     Master Layout
-@endsection
+@endsection 
 
 @section('nav')
     @parent
     <li>Sarfraz</li>
 @endsection
+
+@push('script')
+    <script src="/example.js"></script>
+@endpush
+
+@push('script')
+    <script src="/jQuery.js"></script>
+    <script src="/bootstrap.js"></script>
+    <script src="/example.js"></script>
+@endpush
+
+@push('style')
+    <script src="/example.css"></script>
+@endpush
+
+@prepend('script')
+<h1>sarfrzaz</h1>          {{-- use it for a html part or style css --}}
+@endprepend
