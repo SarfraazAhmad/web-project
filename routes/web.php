@@ -62,3 +62,40 @@ Route::get('/masterlayout',function(){
 Route::get('/testing',function(){
     return view('pages.testing');
 });
+
+//Pass Data Route to view
+
+function getNames(){
+ return [
+        1=>['name'=>'sarfraz','phno'=>'0344','city'=>'hfd'],
+        2=>['name'=>'adil','phno'=>'0340','city'=>'grw'],
+        3=>['name'=>'anas','phno'=>'0320','city'=>'isl'],
+    ];
+}
+//  there are 3 ways to pass the data
+//1.
+Route::get('users',function(){
+    $usrNames=getNames();
+    return view('page.user',['names'=>$usrNames]);
+});
+
+//2.
+
+// Route::get('users',function(){
+//     $usrNames=getNames();
+//     return view('page.user')->with('names',$usrNames);
+// });
+
+//3.
+
+// Route::get('users',function(){
+//     $usrNames=getNames();
+//     return view('page.user')->withName($usrNames);
+// });
+
+Route::get('user/{id}',function($id){
+    $names=getNames();
+    abort_if(!isset($names[$id]), 404);
+    $detail=$names[$id];
+    return view('page.user-detail',['detail'=>$detail]);
+})->name('user.detail');
